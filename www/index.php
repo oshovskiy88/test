@@ -55,3 +55,12 @@ class Banya {
 $obj= new Banya;
 $obj();
 //echo $obj;
+
+
+
+// Подключаем необходимые файлы
+require __DIR__  . '/../vendor/liw/core/App.php';
+require __DIR__ . '/../app/App.php';
+// создали новый объект класса из папки vendor
+$app = new app\App();
+
