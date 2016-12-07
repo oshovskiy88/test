@@ -5,12 +5,19 @@ use liw\core\App as Application;
  * Class App
  * @package app
  */
-class App extends Application
+final class App extends Application
 {
-    public function __construct()
+
+//    public function __construct()
+//    { parent:: __construct();
+//        echo 'Создался новый экземпляр класса из папкм "app/"<br> ';
+//    }
+
+    public function run($data = null)
     {
-        // Обращаемся к конструктору родительского класса
-        parent::__construct();
-        echo 'Создался новый экземпляр класса из папки "app/"<br>';
+        echo $data->get ();
+        //echo 'Этот метод является реализацией абстрактного класса<br>';
     }
+
 }
+
