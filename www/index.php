@@ -1,4 +1,12 @@
 <?php
+
+// вернет: /client/?s=word&foo=bar
+
+// $arr_params = array( 'foo' => 'bar', 'baz' => 'tiny' );
+// echo esc_url( add_query_arg( $arr_params ) );
+// вернет: /client/?s=word&foo=bar&baz=tiny
+
+
 ////phpinfo();
 ////побороть ошибку git
 ////git config --global user.email "ge*****gmail.com"
@@ -59,10 +67,29 @@
 
 
 // Подключаем необходимые файлы
-require __DIR__  . '/../vendor/liw/core/App.php';
-require __DIR__ . '/../app/App.php';
-require __DIR__ . '/../app/data1.php';
-require __DIR__ . '/../app/data2.php';
+//require __DIR__  . '/../vendor/liw/core/App.php';
+//require __DIR__ . '/../app/App.php';
+//require __DIR__ . '/../app/data1.php';
+//require __DIR__ . '/../app/data2.php';
+function myAutoload($className)
+{
+    $class_pieces = explode('\\',$className);
+    switch ($class_pieces[0]){
+        case 'app':
+            require __DIR__.'/../'.implode(DIRECTORY_SEPARATOR,$class_pieces).'.php';
+            break;
+        case 'liw':
+            require __DIR__.'/../vendor/'.implode(DIRECTORY_SEPARATOR,$class_pieces).'.php';
+            break;
+        }
+}
+
+spl_autoload_register('myAutoload',true,true);
+
+
+
+
+
 // создали новый объект класса из папки vendor
 $app = new app\App();
 // $app -> run();
@@ -89,4 +116,24 @@ echo '<br>'.$IDo->nastroy;
 
 $data1= new \app\data1();
 $data2= new \app\data2();
+echo "<br>";
+
+//Система оплаты
+$payPal = new \app\paymentSystem\PayPal();
+$webmoney = new \app\paymentSystem\webmoney();
+$paymentSystem = new \app\paymontService();
+$paymentSystem->payment($payPal);
+$paymentSystem->payment($webmoney);
+
+
+
+
+
+
+
+
+
+					
+
+
 
