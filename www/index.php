@@ -127,6 +127,10 @@ $paymentSystem->payment($webmoney);
 
 
 
+$new = new \app\App2();
+
+
+
 
 
 
