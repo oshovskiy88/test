@@ -1,0 +1,12 @@
+1. select EmployeeID from Employees a1 where Salary>(select Salary from Employees where EmployeeID =a1.BossID);
+2. select EmployeeID from Employees a1 where Salary=(select max(Salary) from Employees where DepartmentID=a1.DepartmentID);
+3. select Name from Departments group by DepartmentID having count(*) <= 3
+4. select a.* from Employees a,
+	Employees b
+	where 
+	a. BossID = b. EmployeeID (+)
+	and a. DepartmentID = b. DepartmentID
+	and b. EmployeeID is null
+	or a1.BossID not in (select EmployeeID from Employees where DepartmentID =a1. DepartmentID);
+5. with sum_Salary as ( select DepartmentID, sum(Salary) Salary from Employees group by DepartmentID) select DepartmentID from sum_Salary
+
