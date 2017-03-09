@@ -10,3 +10,4 @@
 	or a1.BossID not in (select EmployeeID from Employees where DepartmentID =a1. DepartmentID);
 5. with sum_Salary as ( select DepartmentID, sum(Salary) Salary from Employees group by DepartmentID) select DepartmentID from sum_Salary
 
+
